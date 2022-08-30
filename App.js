@@ -18,6 +18,7 @@ import UserScreen from "./screens/UserScreen";
 import { useEffect, useState } from "react";
 import Notification from "./screens/Notification";
 import Payment from "./screens/Payment";
+import Coupons from "./screens/Coupons";
 
 const Stack = createNativeStackNavigator();
 
@@ -56,14 +57,19 @@ export default function App() {
                     component={Notification}
                   />
                   <Stack.Screen
-                    options={{ title: "Payment", headerShown: false }}
+                    options={{ title: "PAGAMENTOS", headerShown: false }}
                     name="Payment"
                     component={Payment}
                   />
                   <Stack.Screen
+                    options={{ title: "Coupons", headerShown: false }}
+                    name="Coupons"
+                    component={Coupons}
+                  />
+                  <Stack.Screen
                     name="User"
                     component={UserScreen}
-                    options={{ presentation: "modal", headerShown: false }}
+                    options={{ headerShown: false }}
                   />
                   <Stack.Screen
                     name="Preparing"

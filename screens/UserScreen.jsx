@@ -34,7 +34,7 @@ const UserScreen = () => {
         </TouchableOpacity>
       </View>
 
-      <ScrollView className="rounded-tr-2xl rounded-tl-2xl h-80 bg-white">
+      <ScrollView className="rounded-tr-2xl rounded-tl-2xl h-96 bg-white">
         <TouchableOpacity>
           <UserSettings
             text="Chats"
@@ -59,15 +59,6 @@ const UserScreen = () => {
           />
         </TouchableOpacity>
 
-        <TouchableOpacity>
-          <UserSettings
-            text="Favoritos"
-            icon={<HeartIcon size={24} color="#00CCBB" />}
-            novo="Novo!"
-            subtitle="Meus locais favoritos"
-          />
-        </TouchableOpacity>
-
         <TouchableOpacity
           onPress={() => {
             navigation.popToTop();
@@ -81,12 +72,27 @@ const UserScreen = () => {
             subtitle="Meus saldos e cartões"
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => {
+            navigation.popToTop();
+            navigation.navigate("Coupons");
+          }}
+        >
           <UserSettings
             text="Cupons"
             icon={<TicketIcon size={24} color="#00CCBB" />}
             number="3"
             subtitle="Meus cupons de desconto"
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity>
+          <UserSettings
+            text="Favoritos"
+            icon={<HeartIcon size={24} color="#00CCBB" />}
+            novo="Novo!"
+            subtitle="Meus locais favoritos"
           />
         </TouchableOpacity>
 

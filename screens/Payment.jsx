@@ -32,11 +32,11 @@ const Payment = () => {
       </View>
 
       <View className="items-center mt-5">
-        <View className="w-96 h-32 bg-white rounded-lg p-4 justify-between">
+        <View className="w-96 h-32 bg-white rounded-lg p-4 justify-between shadow">
           <Text className="font-medium">Saldo</Text>
           <View>
             <Text className="text-gray-500 text-xs">Saldo disponível</Text>
-            <Text className="text-gray-500 text-lg">R$ 695,47</Text>
+            <Text className="text-gray-500 text-lg">R$ 2.168,47</Text>
           </View>
         </View>
       </View>
@@ -47,7 +47,9 @@ const Payment = () => {
             <Text className="font-bold text-lg text-gray-700">
               Formas de pagamento
             </Text>
-            <Text className="text-[#00CCBB] text-sm">Ver todas</Text>
+            <TouchableOpacity className="">
+              <Text className="text-[#00CCBB] text-sm">Ver todas</Text>
+            </TouchableOpacity>
           </View>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <PaymentMethod
