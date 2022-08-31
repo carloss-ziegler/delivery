@@ -35,12 +35,17 @@ const UserScreen = () => {
       </View>
 
       <ScrollView className="rounded-tr-2xl rounded-tl-2xl h-96 bg-white">
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.popToTop();
+            navigation.navigate("Location");
+          }}
+        >
           <UserSettings
-            text="Chats"
-            icon={<ChatIcon size={24} color="#00CCBB" />}
-            number="9+"
-            subtitle="Minhas conversas"
+            text="Endereço de Entrega"
+            icon={<LocationMarkerIcon size={24} color="#00CCBB" />}
+            novo="Novo!"
+            subtitle="Meus endereços de entrega"
           />
         </TouchableOpacity>
 
@@ -89,19 +94,19 @@ const UserScreen = () => {
 
         <TouchableOpacity>
           <UserSettings
-            text="Favoritos"
-            icon={<HeartIcon size={24} color="#00CCBB" />}
-            novo="Novo!"
-            subtitle="Meus locais favoritos"
+            text="Chats"
+            icon={<ChatIcon size={24} color="#00CCBB" />}
+            number="9+"
+            subtitle="Minhas conversas"
           />
         </TouchableOpacity>
 
         <TouchableOpacity>
           <UserSettings
-            text="Endereço de Entrega"
-            icon={<LocationMarkerIcon size={24} color="#00CCBB" />}
+            text="Favoritos"
+            icon={<HeartIcon size={24} color="#00CCBB" />}
             novo="Novo!"
-            subtitle="Meus endereços de entrega"
+            subtitle="Meus locais favoritos"
           />
         </TouchableOpacity>
       </ScrollView>

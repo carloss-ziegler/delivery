@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 import Notification from "./screens/Notification";
 import Payment from "./screens/Payment";
 import Coupons from "./screens/Coupons";
+import LocationScreen from "./screens/LocationScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -33,13 +34,13 @@ export default function App() {
 
   return (
     <>
-      <NavigationContainer>
-        <Provider store={store}>
-          <TailwindProvider>
+      <Provider store={store}>
+        <TailwindProvider>
+          <NavigationContainer>
             <StatusBar style="dark" />
             <Stack.Navigator>
               {userCredentials ? (
-                <Stack.Group>
+                <>
                   <Stack.Screen name="Home" component={HomeScreen} />
                   <Stack.Screen
                     name="Restaurant"
@@ -67,6 +68,11 @@ export default function App() {
                     component={Coupons}
                   />
                   <Stack.Screen
+                    options={{ title: "Location", headerShown: false }}
+                    name="Location"
+                    component={LocationScreen}
+                  />
+                  <Stack.Screen
                     name="User"
                     component={UserScreen}
                     options={{ headerShown: false }}
@@ -87,7 +93,7 @@ export default function App() {
                       headerShown: false,
                     }}
                   />
-                </Stack.Group>
+                </>
               ) : (
                 <Stack.Group>
                   <Stack.Screen
@@ -108,9 +114,10 @@ export default function App() {
                 </Stack.Group>
               )}
             </Stack.Navigator>
-          </TailwindProvider>
-        </Provider>
-      </NavigationContainer>
+          </NavigationContainer>
+        </TailwindProvider>
+      </Provider>
+
       <Toast />
     </>
   );

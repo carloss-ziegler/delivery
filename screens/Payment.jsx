@@ -32,7 +32,7 @@ const Payment = () => {
       </View>
 
       <View className="items-center mt-5">
-        <View className="w-96 h-32 bg-white rounded-lg p-4 justify-between shadow">
+        <View className="w-96 h-32 bg-white rounded-lg p-4 justify-between shadow-sm">
           <Text className="font-medium">Saldo</Text>
           <View>
             <Text className="text-gray-500 text-xs">Saldo disponível</Text>
