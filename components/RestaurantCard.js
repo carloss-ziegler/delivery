@@ -43,12 +43,16 @@ const RestaurantCard = ({
         }}
         className="h-36 w-64 rounded-t-sm"
       />
+      <View className="items-center justify-center w-24 h-11 rounded-3xl -mt-8 ml-36 bg-white shadow">
+        <Text className="font-extrabold">30 - 45</Text>
+        <Text className="text-xs">min</Text>
+      </View>
       <View className="px-3 pb-4">
         <Text className="font-bold text-lg pt-2">{title}</Text>
         <View className="flex-row items-center space-x-1">
           <StarIcon color="#048444" opacity={0.5} size={22} />
           <Text className="text-xs text-gray-500">
-            <Text className="text-green-500">{rating}</Text> • {genre}
+            <Text className="text-green-500">{rating}</Text> (500+) • {genre}
           </Text>
         </View>
 

@@ -25,6 +25,7 @@ import { UserIcon } from "react-native-heroicons/outline";
 import Modal from "react-native-modal";
 
 const HomeScreen = () => {
+  const [active, setActive] = useState(false);
   const [isModalVisible, setModalVisible] = useState(false);
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -65,15 +66,48 @@ const HomeScreen = () => {
       >
         <View className="w-full h-72 justify-between p-5 bg-white rounded">
           <View className="items-center justify-between flex-row">
-            <View className="bg-[#00CCBB] items-center p-1 w-[100px] rounded-2xl">
-              <Text className="font-bold text-white">Delivery</Text>
-            </View>
-            <View className="bg-white items-center p-1 w-[100px] rounded-2xl">
-              <Text className="font-semibold text-[#00CCBB]">Retirar</Text>
-            </View>
-            <View className="bg-white items-center p-1 w-[100px] rounded-2xl">
-              <Text className="font-semibold text-[#00CCBB]">Cardápio</Text>
-            </View>
+            <TouchableOpacity
+              onPress={() => setActive(!active)}
+              className={`${
+                active && "bg-[#00CCBB]"
+              } items-center p-1 w-[100px] rounded-2xl`}
+            >
+              <Text
+                className={`${
+                  active ? "text-white font-bold" : "text-[#00CCBB]"
+                } font-semibold `}
+              >
+                Delivery
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => setActive(!active)}
+              className={`${
+                active && "bg-[#00CCBB]"
+              } items-center p-1 w-[100px] rounded-2xl`}
+            >
+              <Text
+                className={`${
+                  active ? "text-white font-bold" : "text-[#00CCBB]"
+                } font-semibold `}
+              >
+                Retirar
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => setActive(!active)}
+              className={`${
+                active && "bg-[#00CCBB]"
+              } items-center p-1 w-[100px] rounded-2xl`}
+            >
+              <Text
+                className={`${
+                  active ? "text-white font-bold" : "text-[#00CCBB]"
+                } font-semibold `}
+              >
+                Cardápio
+              </Text>
+            </TouchableOpacity>
           </View>
 
           <View className="h-32 justify-evenly">
@@ -113,11 +147,12 @@ const HomeScreen = () => {
         </View>
       </Modal>
       <SafeAreaView className="bg-white pt-5">
-        <View className="flex-row pb-3 items-center mx-4 space-x-2">
+        <View
+          onPress={toggleModal}
+          className="flex-row pb-3 items-center mx-4 space-x-2"
+        >
           <Image
-            source={{
-              uri: "https://links.papareact.com/wru",
-            }}
+            source={require("../assets/motoboy.png")}
             className="h-9 w-9 bg-gray-300 p-4 rounded-full"
           />
 
@@ -133,7 +168,7 @@ const HomeScreen = () => {
 
           <TouchableOpacity
             onPress={() => navigation.navigate("User")}
-            className="shadow-lg bg-gray-100 p-1 rounded-full"
+            className="shadow-lg bg-[#E4E4E4] p-2 rounded-full"
           >
             <UserIcon size={24} color="#00CCBB" />
           </TouchableOpacity>
