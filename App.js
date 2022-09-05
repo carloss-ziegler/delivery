@@ -20,6 +20,7 @@ import Notification from "./screens/Notification";
 import Payment from "./screens/Payment";
 import Coupons from "./screens/Coupons";
 import LocationScreen from "./screens/LocationScreen";
+import Filter from "./screens/Filter";
 
 const Stack = createNativeStackNavigator();
 
@@ -49,6 +50,11 @@ export default function App() {
                   <Stack.Screen
                     name="Basket"
                     component={BasketScreen}
+                    options={{ presentation: "modal", headerShown: false }}
+                  />
+                  <Stack.Screen
+                    name="Filter"
+                    component={Filter}
                     options={{ presentation: "modal", headerShown: false }}
                   />
 

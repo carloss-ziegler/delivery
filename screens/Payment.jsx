@@ -87,7 +87,7 @@ const Payment = () => {
             <Services
               title="Habilitar"
               subtitle="Face ID"
-              icon={require("../assets/faceId.jpg")}
+              icon={require("../assets/faceId2.png")}
             />
             <Services
               title="Comprar"
