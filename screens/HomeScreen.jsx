@@ -15,16 +15,13 @@ import {
   ChevronDownIcon,
   ClockIcon,
   LocationMarkerIcon,
-  PencilIcon,
   SearchIcon,
-  TrashIcon,
 } from "react-native-heroicons/outline";
 import Categories from "../components/Categories";
 import FeaturedRow from "../components/FeaturedRow";
 import sanityClient from "../sanity";
 import { UserIcon } from "react-native-heroicons/outline";
 import Modal from "react-native-modal";
-import slides from "../helper/slides";
 
 const HomeScreen = () => {
   const [active, setActive] = useState(false);
