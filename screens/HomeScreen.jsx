@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import {
+  FlatList,
   Image,
   ScrollView,
   Text,
@@ -23,6 +24,7 @@ import FeaturedRow from "../components/FeaturedRow";
 import sanityClient from "../sanity";
 import { UserIcon } from "react-native-heroicons/outline";
 import Modal from "react-native-modal";
+import slides from "../helper/slides";
 
 const HomeScreen = () => {
   const [active, setActive] = useState(false);
@@ -192,6 +194,23 @@ const HomeScreen = () => {
           }}
         >
           <Categories />
+
+          <ScrollView horizontal className="w-full shadow p-4">
+            <View className="flex-row">
+              <Image
+                source={require("../assets/deliverooAd.jpg")}
+                className="w-80 h-44 bg-white shadow rounded mr-3"
+              />
+              <Image
+                source={require("../assets/deliverooAd2.jpg")}
+                className="w-80 mr-3 bg-white h-44 shadow rounded"
+              />
+              <Image
+                source={require("../assets/deliverooAd3.webp")}
+                className="w-80 h-44 bg-white shadow rounded"
+              />
+            </View>
+          </ScrollView>
 
           {featuredCategories?.map((category) => (
             <FeaturedRow
