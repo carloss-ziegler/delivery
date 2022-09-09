@@ -29,7 +29,12 @@ const UserScreen = () => {
           className="h-24 w-24 rounded-full bg-gray-600 -mt-16 shadow-xl"
         />
 
-        <TouchableOpacity className="bg-[#00CCBB] p-2 mt-6 rounded-xl mb-2 shadow">
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Edit");
+          }}
+          className="bg-[#00CCBB] p-2 mt-6 rounded-xl mb-2 shadow"
+        >
           <Text className="font-bold text-lg text-white">Editar Prefil</Text>
         </TouchableOpacity>
       </View>
@@ -37,7 +42,6 @@ const UserScreen = () => {
       <ScrollView className="rounded-tr-2xl rounded-tl-2xl h-96 bg-white">
         <TouchableOpacity
           onPress={() => {
-            navigation.popToTop();
             navigation.navigate("Location");
           }}
         >
@@ -51,7 +55,6 @@ const UserScreen = () => {
 
         <TouchableOpacity
           onPress={() => {
-            navigation.popToTop();
             navigation.navigate("Notification");
           }}
         >
@@ -66,7 +69,6 @@ const UserScreen = () => {
 
         <TouchableOpacity
           onPress={() => {
-            navigation.popToTop();
             navigation.navigate("Payment");
           }}
         >
@@ -80,7 +82,6 @@ const UserScreen = () => {
 
         <TouchableOpacity
           onPress={() => {
-            navigation.popToTop();
             navigation.navigate("Coupons");
           }}
         >

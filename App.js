@@ -21,6 +21,7 @@ import Payment from "./screens/Payment";
 import Coupons from "./screens/Coupons";
 import LocationScreen from "./screens/LocationScreen";
 import Filter from "./screens/Filter";
+import EditProfile from "./screens/EditProfile";
 
 const Stack = createNativeStackNavigator();
 
@@ -56,6 +57,11 @@ export default function App() {
                     name="Filter"
                     component={Filter}
                     options={{ presentation: "modal", headerShown: false }}
+                  />
+                  <Stack.Screen
+                    name="Edit"
+                    component={EditProfile}
+                    options={{ headerShown: false }}
                   />
 
                   <Stack.Screen

@@ -4,10 +4,10 @@
     "slug": "Delivery",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/motoboy.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/motoboy.png",
       "resizeMode": "contain",
       "backgroundColor": "#00CCBB"
     },

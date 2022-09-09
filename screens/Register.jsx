@@ -131,15 +131,17 @@ const Register = () => {
         </TouchableOpacity>
       </Animatable.View>
 
-      <View className="flex-1 bg-white px-3 -mt-8">
-        <Text className="text-xs text-gray-400">
-          {"  "}
-          Ao continuar você concorda com nossos{" "}
-          <Text className="text-[#00CCBB]">Termos & Privacidade.</Text> Nós
-          usamos seus dados para oferecer a você uma melhor{" "}
-          <Text className="text-[#00CCBB]">experiência</Text> com o nosso
-          sistema.
-        </Text>
+      <View className="flex-1 bg-white px-3 -mt-8 shadow-sm">
+        <View className="mt-3">
+          <Text className="text-xs text-gray-400">
+            {"  "}
+            Ao continuar você concorda com nossos{" "}
+            <Text className="text-[#00CCBB]">Termos & Privacidade.</Text> Nós
+            usamos seus dados para oferecer a você uma melhor{" "}
+            <Text className="text-[#00CCBB]">experiência</Text> com o nosso
+            sistema.
+          </Text>
+        </View>
       </View>
     </View>
   );
