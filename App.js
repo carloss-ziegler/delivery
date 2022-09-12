@@ -28,11 +28,11 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   const [userCredentials, setUserCredentials] = useState(null);
 
-  useEffect(() => {
-    AsyncStorage.getItem("token").then((response) => {
-      setUserCredentials(response);
-    });
-  }, [userCredentials]);
+  // useEffect(() => {
+  //   AsyncStorage.getItem("token").then((response) => {
+  //     setUserCredentials(response);
+  //   });
+  // }, [userCredentials]);
 
   return (
     <>
@@ -41,72 +41,8 @@ export default function App() {
           <NavigationContainer>
             <StatusBar style="dark" />
             <Stack.Navigator>
-              {userCredentials ? (
-                <>
-                  <Stack.Screen name="Home" component={HomeScreen} />
-                  <Stack.Screen
-                    name="Restaurant"
-                    component={RestaurantScreen}
-                  />
-                  <Stack.Screen
-                    name="Basket"
-                    component={BasketScreen}
-                    options={{ presentation: "modal", headerShown: false }}
-                  />
-                  <Stack.Screen
-                    name="Filter"
-                    component={Filter}
-                    options={{ presentation: "modal", headerShown: false }}
-                  />
-                  <Stack.Screen
-                    name="Edit"
-                    component={EditProfile}
-                    options={{ headerShown: false }}
-                  />
-
-                  <Stack.Screen
-                    options={{ title: "Notificações", headerShown: false }}
-                    name="Notification"
-                    component={Notification}
-                  />
-                  <Stack.Screen
-                    options={{ title: "PAGAMENTOS", headerShown: false }}
-                    name="Payment"
-                    component={Payment}
-                  />
-                  <Stack.Screen
-                    options={{ title: "Coupons", headerShown: false }}
-                    name="Coupons"
-                    component={Coupons}
-                  />
-                  <Stack.Screen
-                    options={{ title: "Location", headerShown: false }}
-                    name="Location"
-                    component={LocationScreen}
-                  />
-                  <Stack.Screen
-                    name="User"
-                    component={UserScreen}
-                    options={{ headerShown: false }}
-                  />
-                  <Stack.Screen
-                    name="Preparing"
-                    component={PreparingOrder}
-                    options={{
-                      presentation: "fullScreenModal",
-                      headerShown: false,
-                    }}
-                  />
-                  <Stack.Screen
-                    name="Delivery"
-                    component={DeliveryScreen}
-                    options={{
-                      presentation: "fullScreenModal",
-                      headerShown: false,
-                    }}
-                  />
-                </>
-              ) : (
+              {/* {userCredentials ? ( */}
+              <>
                 <Stack.Group>
                   <Stack.Screen
                     name="Welcome"
@@ -124,7 +60,69 @@ export default function App() {
                     options={{ presentation: "modal", headerShown: false }}
                   />
                 </Stack.Group>
-              )}
+                <Stack.Screen name="Home" component={HomeScreen} />
+                <Stack.Screen name="Restaurant" component={RestaurantScreen} />
+                <Stack.Screen
+                  name="Basket"
+                  component={BasketScreen}
+                  options={{ presentation: "modal", headerShown: false }}
+                />
+                <Stack.Screen
+                  name="Filter"
+                  component={Filter}
+                  options={{ presentation: "modal", headerShown: false }}
+                />
+                <Stack.Screen
+                  name="Edit"
+                  component={EditProfile}
+                  options={{ headerShown: false }}
+                />
+
+                <Stack.Screen
+                  options={{ title: "Notificações", headerShown: false }}
+                  name="Notification"
+                  component={Notification}
+                />
+                <Stack.Screen
+                  options={{ title: "PAGAMENTOS", headerShown: false }}
+                  name="Payment"
+                  component={Payment}
+                />
+                <Stack.Screen
+                  options={{ title: "Coupons", headerShown: false }}
+                  name="Coupons"
+                  component={Coupons}
+                />
+                <Stack.Screen
+                  options={{ title: "Location", headerShown: false }}
+                  name="Location"
+                  component={LocationScreen}
+                />
+                <Stack.Screen
+                  name="User"
+                  component={UserScreen}
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                  name="Preparing"
+                  component={PreparingOrder}
+                  options={{
+                    presentation: "fullScreenModal",
+                    headerShown: false,
+                  }}
+                />
+                <Stack.Screen
+                  name="Delivery"
+                  component={DeliveryScreen}
+                  options={{
+                    presentation: "fullScreenModal",
+                    headerShown: false,
+                  }}
+                />
+              </>
+              {/* ) : ( */}
+
+              {/* )} */}
             </Stack.Navigator>
           </NavigationContainer>
         </TailwindProvider>

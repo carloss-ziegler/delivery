@@ -24,6 +24,7 @@ const Register = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         AsyncStorage.setItem("token", JSON.stringify(userCredential));
+        navigation.navigate("Home");
       })
       .catch((error) => {
         Alert.alert(error.message);
