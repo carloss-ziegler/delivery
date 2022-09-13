@@ -39,26 +39,36 @@ const Register = () => {
   };
 
   return (
-    <View className="flex-1 bg-[#00CCBB]">
+    <View className="flex-1 bg-[#FFF]">
       <Animatable.View
         animation="fadeInLeft"
-        className="mt-12 mb-12 items-center"
+        className="mt-8 flex-row items-center justify-between mb-12 px-5"
       >
         <Animatable.Image
           animation="flipInY"
           source={require("../assets/deliveryLogo.jpeg")}
-          className="w-40 h-40 rounded-full"
+          className="w-24 h-24 rounded-full"
         />
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Register")}
+          className="w-24 items-center justify-center rounded h-9 bg-[#00CCBB]"
+        >
+          <Text className="text-white font-bold">Cadastre-se</Text>
+        </TouchableOpacity>
       </Animatable.View>
 
-      <Animatable.View
-        animation="fadeInUp"
-        className="bg-white flex-1 rounded-t-2xl p-5"
-      >
-        <View className="w-full items-center">
-          <View className="border-t-[3px] rounded w-5 border-gray-500" />
-        </View>
-        <View className="flex-row items-center justify-center mt-8 bg-gray-100">
+      <View className="px-7">
+        <Text className="mb-5 font-bold text-3xl">Entrar</Text>
+        <Text className="text-gray-500 text-sm font-medium">
+          Bem-Vindo de volta!
+        </Text>
+        <Text className="text-gray-500 text-sm font-medium">
+          Entre com sua conta para continuar
+        </Text>
+      </View>
+
+      <Animatable.View animation="fadeInUp" className="bg-white flex-1 p-5">
+        <View className="flex-row items-center justify-center mt-4 rounded bg-gray-100">
           <View className="opacity-50">
             <Entypo.Button
               name="mail"
@@ -75,7 +85,7 @@ const Register = () => {
           />
         </View>
 
-        <View className="flex-row items-center mt-6 justify-between bg-gray-100">
+        <View className="flex-row items-center mt-6 justify-between rounded bg-gray-100">
           <View className="opacity-50">
             <Entypo.Button
               name="lock"
@@ -113,29 +123,34 @@ const Register = () => {
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity className="items-center mt-3">
-          <FontAwesome.Button name="google" backgroundColor="#3b5998">
-            <Text className="text-sm text-white">
-              Entrar com <Text className="font-bold">Google</Text>
-            </Text>
-          </FontAwesome.Button>
-        </TouchableOpacity>
+        <View className="items-center justify-center mt-4 mb-1 flex-row">
+          <View className="h-[1px] w-16 bg-gray-400 mr-2" />
+          <Text className="text-xs text-gray-400">Ou</Text>
+          <View className="h-[1px] w-16 bg-gray-400 ml-2" />
+        </View>
 
-        <TouchableOpacity
-          className="items-center mt-3"
-          onPress={() => navigation.navigate("Register")}
-        >
-          <Text className="text-sm text-gray-400">
-            Não possui uma conta?{" "}
-            <Text className="text-[#00CCBB] text-sm">Cadastre-se</Text>
-          </Text>
-        </TouchableOpacity>
+        <View className="items-center flex-row justify-evenly">
+          <TouchableOpacity className="items-center mt-3">
+            <FontAwesome.Button name="google" backgroundColor="#3b5998">
+              <Text className="text-sm text-white">
+                Entrar com <Text className="font-bold">Google</Text>
+              </Text>
+            </FontAwesome.Button>
+          </TouchableOpacity>
+
+          <TouchableOpacity className="items-center mt-3">
+            <FontAwesome.Button name="apple" backgroundColor="#44444c">
+              <Text className="text-sm text-white">
+                Entrar com <Text className="font-bold">Apple ID</Text>
+              </Text>
+            </FontAwesome.Button>
+          </TouchableOpacity>
+        </View>
       </Animatable.View>
 
-      <View className="flex-1 bg-white px-3 -mt-8 shadow-sm">
+      <View className="flex-1 bg-white px-3 -mt-8 justify-center items-center">
         <View className="mt-3">
           <Text className="text-xs text-gray-400">
-            {"  "}
             Ao continuar você concorda com nossos{" "}
             <Text className="text-[#00CCBB]">Termos & Privacidade.</Text> Nós
             usamos seus dados para oferecer a você uma melhor{" "}

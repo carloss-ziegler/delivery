@@ -2,6 +2,7 @@ import { View, Text, Image, Dimensions } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import AppIntroSlider from "react-native-app-intro-slider";
+import { ChevronRightIcon } from "react-native-heroicons/solid";
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -54,64 +55,64 @@ const LoginScreen = () => {
     },
   ];
 
-  if (!showHomePage) {
-    return (
-      <AppIntroSlider
-        data={slides}
-        renderItem={({ item }) => {
-          return (
-            <View
+  // if (!showHomePage) {
+  return (
+    <AppIntroSlider
+      data={slides}
+      renderItem={({ item }) => {
+        return (
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              padding: 15,
+              paddingTop: 70,
+            }}
+          >
+            <Image
+              source={item.image}
               style={{
-                flex: 1,
-                alignItems: "center",
-                padding: 15,
-                paddingTop: 70,
+                width: SIZES.width - 80,
+                height: 400,
+              }}
+              resizeMode="contain"
+            />
+            <Text
+              style={{
+                fontWeight: "700",
+                color: "#000",
+                fontSize: 22,
               }}
             >
-              <Image
-                source={item.image}
-                style={{
-                  width: SIZES.width - 80,
-                  height: 400,
-                }}
-                resizeMode="contain"
-              />
-              <Text
-                style={{
-                  fontWeight: "700",
-                  color: "#000",
-                  fontSize: 22,
-                }}
-              >
-                {item.title}
-              </Text>
-              <Text
-                style={{
-                  textAlign: "center",
-                  paddingTop: 5,
-                  color: "#000",
-                }}
-              >
-                {item.description}
-              </Text>
-            </View>
-          );
-        }}
-        activeDotStyle={{
-          backgroundColor: "#00CCBB",
-          width: 30,
-        }}
-        showSkipButton
-        renderNextButton={() => buttonLabel("Próximo")}
-        renderSkipButton={() => buttonLabel("Pular")}
-        renderDoneButton={() => buttonLabel("Feito")}
-        onDone={() => {
-          setShowHomePage(true);
-          navigation.navigate("Home");
-        }}
-      />
-    );
-  }
+              {item.title}
+            </Text>
+            <Text
+              style={{
+                textAlign: "center",
+                paddingTop: 5,
+                color: "#000",
+              }}
+            >
+              {item.description}
+            </Text>
+          </View>
+        );
+      }}
+      activeDotStyle={{
+        backgroundColor: "#00CCBB",
+        width: 30,
+      }}
+      showSkipButton
+      renderNextButton={() => buttonLabel("Próximo")}
+      renderSkipButton={() => buttonLabel("Pular")}
+      renderDoneButton={() => buttonLabel("Feito")}
+      onDone={() => {
+        // setShowHomePage(true);
+        navigation.navigate("Login");
+      }}
+    />
+  );
+  // }
 };
 
 export default LoginScreen;
