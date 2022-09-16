@@ -1,7 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import {
-  FlatList,
   Image,
   ScrollView,
   Text,
@@ -178,6 +177,7 @@ const HomeScreen = () => {
             <TextInput
               placeholder="Restaurantes e pratos"
               keyboardType="default"
+              onChangeText={(value) => setInput(value)}
             />
           </View>
           <TouchableOpacity onPress={() => navigation.navigate("Filter")}>
@@ -192,7 +192,12 @@ const HomeScreen = () => {
         >
           <Categories />
 
-          <ScrollView horizontal className="w-full shadow p-4">
+          <ScrollView
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{ paddingEnd: 30 }}
+            horizontal
+            className="w-full shadow p-4"
+          >
             <View className="flex-row">
               <Image
                 source={require("../assets/deliverooAd.jpg")}

@@ -30,6 +30,12 @@ const Notification = () => {
           imgUrl={require("../assets/vector-county-fair-ticket.webp")}
           date="19/08"
         />
+        <NotificationRow
+          title="O Melhor Hamburguer"
+          subtitle="Peça o melhor perto de você!"
+          imgUrl={require("../assets/ifoodNoti.jpg")}
+          date="12/09"
+        />
       </View>
     </SafeAreaView>
   );

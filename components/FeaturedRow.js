@@ -41,6 +41,7 @@ const FeaturedRow = ({ title, description, id }) => {
         horizontal
         contentContainerStyle={{
           paddingHorizontal: 15,
+          paddingBottom: 30,
         }}
         showsHorizontalScrollIndicator={false}
         className="pt-4"

@@ -36,7 +36,7 @@ const Payment = () => {
           <Text className="font-medium">Saldo</Text>
           <View>
             <Text className="text-gray-500 text-xs">Saldo disponível</Text>
-            <Text className="text-gray-500 text-lg">R$ 2.168,47</Text>
+            <Text className="text-gray-500 text-lg">R$ 10.589,56</Text>
           </View>
         </View>
       </View>

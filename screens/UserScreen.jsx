@@ -1,6 +1,5 @@
 import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
 import React from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import UserSettings from "../components/UserSettings";
 import {
@@ -11,6 +10,7 @@ import {
   TicketIcon,
 } from "react-native-heroicons/outline";
 import { BellIcon } from "react-native-heroicons/outline";
+import Toast from "react-native-toast-message";
 
 const UserScreen = () => {
   const navigation = useNavigation();
@@ -113,7 +113,15 @@ const UserScreen = () => {
       </ScrollView>
       <View className="items-center mt-4">
         <TouchableOpacity
-          onPress={() => AsyncStorage.removeItem("token")}
+          onPress={() => {
+            navigation.navigate("Welcome");
+            Toast.show({
+              text1: "Desconectado",
+              text2: "Desconectado da conta!",
+              type: "info",
+              visibilityTime: 3000,
+            });
+          }}
           className="bg-red-500 rounded-3xl items-center justify-center w-20 p-3 shadow"
         >
           <Text className="font-bold text-white">Sair</Text>
