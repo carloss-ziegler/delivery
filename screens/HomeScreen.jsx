@@ -156,11 +156,12 @@ const HomeScreen = () => {
 
           <View className="flex-1">
             <Text className="font-bold text-gray-400 text-xs">Peça Agora!</Text>
-            <TouchableOpacity onPress={toggleModal}>
-              <Text className="font-bold text-xl">
-                Localização Atual
-                <ChevronDownIcon size={20} color="#00CCBB" />
-              </Text>
+            <TouchableOpacity
+              className="flex-row items-center"
+              onPress={toggleModal}
+            >
+              <Text className="mr-2 font-bold text-xl">Localização Atual</Text>
+              <ChevronDownIcon size={20} color="#00CCBB" />
             </TouchableOpacity>
           </View>
 
