@@ -68,7 +68,7 @@ const Register = () => {
       </View>
 
       <Animatable.View animation="fadeInUp" className="bg-white flex-1 p-5">
-        <View className="flex-row items-center justify-center mt-4 rounded bg-gray-100">
+        <View className="flex-row items-center justify-start mt-4 rounded bg-gray-100">
           <View className="opacity-50">
             <Entypo.Button
               name="mail"
@@ -86,21 +86,23 @@ const Register = () => {
         </View>
 
         <View className="flex-row items-center mt-6 justify-between rounded bg-gray-100">
-          <View className="opacity-50">
-            <Entypo.Button
-              name="lock"
-              backgroundColor="rgb(243, 244, 246)"
-              color="#000"
+          <View className="flex-row items-center justify-start">
+            <View className="opacity-50">
+              <Entypo.Button
+                name="lock"
+                backgroundColor="rgb(243, 244, 246)"
+                color="#000"
+              />
+            </View>
+            <TextInput
+              onChangeText={(text) => setPassword(text)}
+              type="password"
+              placeholder="******"
+              className="w-80 h-12"
+              style={{ fontSize: "16px" }}
+              secureTextEntry={hidePassword}
             />
           </View>
-          <TextInput
-            onChangeText={(text) => setPassword(text)}
-            type="password"
-            placeholder="******"
-            className="w-80 h-12"
-            style={{ fontSize: "16px" }}
-            secureTextEntry={hidePassword}
-          />
           <TouchableOpacity
             disabled={!password}
             onPress={() => setHidePassword(!hidePassword)}
@@ -148,9 +150,9 @@ const Register = () => {
         </View>
       </Animatable.View>
 
-      <View className="flex-1 bg-white px-3 -mt-8 justify-center items-center">
+      <View className="flex-1 bg-white px-3 -mt-7 justify-center items-center">
         <View className="mt-3">
-          <Text className="text-xs text-gray-400">
+          <Text className="text-xs text-gray-400 text-center">
             Ao continuar você concorda com nossos{" "}
             <Text className="text-[#00CCBB]">Termos & Privacidade.</Text> Nós
             usamos seus dados para oferecer a você uma melhor{" "}

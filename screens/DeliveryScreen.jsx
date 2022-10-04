@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { selectRestaurant } from "../features/restaurantSlice";
 import { useSelector } from "react-redux";

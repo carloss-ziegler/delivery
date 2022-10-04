@@ -2,7 +2,6 @@ import { View, Text, Image, Dimensions } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import AppIntroSlider from "react-native-app-intro-slider";
-import { ChevronRightIcon } from "react-native-heroicons/solid";
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -11,7 +10,6 @@ const LoginScreen = () => {
     width,
     height,
   };
-  const [showHomePage, setShowHomePage] = useState(false);
 
   const buttonLabel = (label) => {
     return (
@@ -55,7 +53,6 @@ const LoginScreen = () => {
     },
   ];
 
-  // if (!showHomePage) {
   return (
     <AppIntroSlider
       data={slides}
@@ -105,14 +102,12 @@ const LoginScreen = () => {
       showSkipButton
       renderNextButton={() => buttonLabel("Próximo")}
       renderSkipButton={() => buttonLabel("Pular")}
-      renderDoneButton={() => buttonLabel("Feito")}
+      renderDoneButton={() => buttonLabel("Entendi")}
       onDone={() => {
-        // setShowHomePage(true);
         navigation.navigate("Login");
       }}
     />
   );
-  // }
 };
 
 export default LoginScreen;
