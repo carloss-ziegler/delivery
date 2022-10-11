@@ -80,8 +80,9 @@ const Register = () => {
             onChangeText={(text) => setEmail(text)}
             type="email"
             placeholder="example@gmail.com"
-            className="w-80 h-12"
+            className="w-80 h-12 outline-none border-0"
             style={{ fontSize: "16px" }}
+            placeholderTextColor="#c1c1c1"
           />
         </View>
 
@@ -98,9 +99,10 @@ const Register = () => {
               onChangeText={(text) => setPassword(text)}
               type="password"
               placeholder="******"
-              className="w-80 h-12"
+              className="w-80 h-12 outline-none border-0"
               style={{ fontSize: "16px" }}
               secureTextEntry={hidePassword}
+              placeholderTextColor="#c1c1c1"
             />
           </View>
           <TouchableOpacity

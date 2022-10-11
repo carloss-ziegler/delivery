@@ -3,6 +3,7 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import UserSettings from "../components/UserSettings";
 import {
+  ArrowLeftIcon,
   ChatIcon,
   CreditCardIcon,
   HeartIcon,
@@ -22,6 +23,12 @@ const UserScreen = () => {
           source={require("../assets/BG.jpg")}
           className="w-full h-44 bg-gray-300 p-4"
         />
+        <TouchableOpacity
+          onPress={navigation.goBack}
+          className="absolute top-5 left-5 p-2 bg-gray-100 rounded-full"
+        >
+          <ArrowLeftIcon size={20} color="#00CCBB" />
+        </TouchableOpacity>
       </View>
       <View className="flex items-center">
         <Image
@@ -39,7 +46,10 @@ const UserScreen = () => {
         </TouchableOpacity>
       </View>
 
-      <ScrollView className="rounded-tr-2xl rounded-tl-2xl h-96 bg-white">
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        className="rounded-tr-2xl rounded-tl-2xl h-96 bg-white"
+      >
         <TouchableOpacity
           onPress={() => {
             navigation.navigate("Location");
