@@ -1,54 +1,77 @@
-import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  SafeAreaView,
+} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import UserSettings from "../components/UserSettings";
 import {
-  ArrowLeftIcon,
   ChatIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
   CreditCardIcon,
   HeartIcon,
   LocationMarkerIcon,
   TicketIcon,
 } from "react-native-heroicons/outline";
-import { BellIcon } from "react-native-heroicons/outline";
-import Toast from "react-native-toast-message";
 
-const UserScreen = () => {
-  const navigation = useNavigation();
+import { BellIcon } from "react-native-heroicons/outline";
+import { auth } from "../firebase";
+import { useState } from "react";
+import { useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+
+const UserScreen = ({ navigation }) => {
+  const [userDisplayName, setUserDisplayName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const username = user.displayName;
+        setUserDisplayName(username);
+
+        const email = user.email;
+        setUserEmail(email);
+      } else {
+      }
+    });
+  }, []);
 
   return (
-    <View className="">
-      <View className="relative">
-        <Image
-          source={require("../assets/BG.jpg")}
-          className="w-full h-44 bg-gray-300 p-4"
-        />
-        <TouchableOpacity
-          onPress={navigation.goBack}
-          className="absolute top-5 left-5 p-2 bg-gray-100 rounded-full"
-        >
-          <ArrowLeftIcon size={20} color="#00CCBB" />
-        </TouchableOpacity>
+    <SafeAreaView className="px-4">
+      <View className="flex-row justify-center p-4">
+        <Text className="font-semibold">PERFIL</Text>
       </View>
-      <View className="flex items-center">
-        <Image
-          source={require("../assets/avatar.png")}
-          className="h-24 w-24 rounded-full bg-gray-600 -mt-16 shadow-xl"
-        />
 
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("Edit");
-          }}
-          className="bg-[#00CCBB] p-2 mt-6 rounded-xl mb-2 shadow"
-        >
-          <Text className="font-bold text-lg text-white">Editar Prefil</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate("Edit");
+        }}
+        className="flex-row items-center justify-between my-3 mx-4"
+      >
+        <View className="items-center flex-row">
+          <Image
+            source={require("../assets/avatar.png")}
+            className="h-16 w-16 rounded-full bg-gray-600 shadow-xl"
+          />
+
+          <View className="ml-2">
+            <Text className="text-gray-500 text-xl">{userDisplayName}</Text>
+            <Text className="text-gray-400 text-sm">{userEmail}</Text>
+          </View>
+        </View>
+
+        <ChevronRightIcon color="#00CCBB" size={16} />
+      </TouchableOpacity>
 
       <ScrollView
         showsVerticalScrollIndicator={false}
-        className="rounded-tr-2xl rounded-tl-2xl h-96 bg-white"
+        className="rounded-tr-2xl rounded-tl-2xl h-full bg-white"
       >
         <TouchableOpacity
           onPress={() => {
@@ -57,7 +80,9 @@ const UserScreen = () => {
         >
           <UserSettings
             text="Endereço de Entrega"
-            icon={<LocationMarkerIcon size={24} color="#00CCBB" />}
+            icon={
+              <LocationMarkerIcon size={24} color="#545454" opacity={0.6} />
+            }
             novo="Novo!"
             subtitle="Meus endereços de entrega"
           />
@@ -70,7 +95,7 @@ const UserScreen = () => {
         >
           <UserSettings
             text="Notificações"
-            icon={<BellIcon size={24} color="#00CCBB" />}
+            icon={<BellIcon size={24} color="#545454" opacity={0.6} />}
             number="2"
             subtitle="Minha central de notificações"
             page="Notification"
@@ -84,7 +109,7 @@ const UserScreen = () => {
         >
           <UserSettings
             text="Métodos de Pagamento"
-            icon={<CreditCardIcon size={24} color="#00CCBB" />}
+            icon={<CreditCardIcon size={24} color="#545454" opacity={0.6} />}
             novo="Novo!"
             subtitle="Meus saldos e cartões"
           />
@@ -97,7 +122,7 @@ const UserScreen = () => {
         >
           <UserSettings
             text="Cupons"
-            icon={<TicketIcon size={24} color="#00CCBB" />}
+            icon={<TicketIcon size={24} color="#545454" opacity={0.6} />}
             number="3"
             subtitle="Meus cupons de desconto"
           />
@@ -106,7 +131,7 @@ const UserScreen = () => {
         <TouchableOpacity>
           <UserSettings
             text="Chats"
-            icon={<ChatIcon size={24} color="#00CCBB" />}
+            icon={<ChatIcon size={24} color="#545454" opacity={0.6} />}
             number="9+"
             subtitle="Minhas conversas"
           />
@@ -115,29 +140,13 @@ const UserScreen = () => {
         <TouchableOpacity>
           <UserSettings
             text="Favoritos"
-            icon={<HeartIcon size={24} color="#00CCBB" />}
+            icon={<HeartIcon size={24} color="#545454" opacity={0.6} />}
             novo="Novo!"
             subtitle="Meus locais favoritos"
           />
         </TouchableOpacity>
       </ScrollView>
-      <View className="items-center mt-4">
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("Welcome");
-            Toast.show({
-              text1: "Desconectado",
-              text2: "Desconectado da conta!",
-              type: "info",
-              visibilityTime: 3000,
-            });
-          }}
-          className="bg-red-500 rounded-3xl items-center justify-center w-20 p-3 shadow"
-        >
-          <Text className="font-bold text-white">Sair</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

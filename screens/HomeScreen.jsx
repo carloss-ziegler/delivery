@@ -2,6 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import {
   Image,
+  RefreshControl,
   ScrollView,
   Text,
   TextInput,
@@ -21,10 +22,23 @@ import FeaturedRow from "../components/FeaturedRow";
 import sanityClient from "../sanity";
 import { UserIcon } from "react-native-heroicons/outline";
 import Modal from "react-native-modal";
+import { useCallback } from "react";
+
+const wait = (timeout) => {
+  return new Promise((resolve) => setTimeout(resolve, timeout));
+};
 
 const HomeScreen = () => {
   const [active, setActive] = useState(false);
   const [isModalVisible, setModalVisible] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => {
+      setRefreshing(false);
+    });
+  }, []);
+
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -173,9 +187,10 @@ const HomeScreen = () => {
           </TouchableOpacity>
         </View>
         <View className="flex-row items-center space-x-2 pb-2 mx-2">
-          <View className="flex-row flex-1 space-x-2 bg-gray-200 p-3 rounded">
-            <SearchIcon color="gray" size={20} />
+          <View className="flex-row flex-1 space-x-2 bg-gray-100 p-3 rounded">
+            <SearchIcon color="#00ccbb" size={20} />
             <TextInput
+              className="flex-1 outline-none border-0"
               placeholder="Restaurantes e pratos"
               keyboardType="default"
               onChangeText={(value) => setInput(value)}
@@ -186,6 +201,15 @@ const HomeScreen = () => {
           </TouchableOpacity>
         </View>
         <ScrollView
+          refreshControl={
+            <RefreshControl
+              title="Puxe para atualizar"
+              tintColor="#00ccbb"
+              titleColor="#00ccbb"
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+            />
+          }
           className="bg-gray-100"
           contentContainerStyle={{
             paddingBottom: 100,

@@ -9,7 +9,7 @@ import React from "react";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
-} from "react-native-heroicons/solid";
+} from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
 import EditProfileOption from "../components/EditProfileOption";
 

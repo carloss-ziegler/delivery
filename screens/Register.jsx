@@ -4,12 +4,10 @@ import { useNavigation } from "@react-navigation/native";
 import * as Animatable from "react-native-animatable";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Entypo, Ionicons } from "@expo/vector-icons";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "../firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
 import { useState } from "react";
 import Toast from "react-native-toast-message";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -17,25 +15,30 @@ const Register = () => {
   const [hidePassword, setHidePassword] = useState(true);
   const navigation = useNavigation();
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
-  const handleLoginWithEmail = () => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        AsyncStorage.setItem("token", JSON.stringify(userCredential));
-        navigation.navigate("Home");
-      })
-      .catch((error) => {
-        Alert.alert(error.message);
+  const handleLoginWithEmail = async () => {
+    if (email && password) {
+      await signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          console.log("sucesso");
+          Toast.show({
+            type: "success",
+            text1: "Login",
+            text2: "Logado com sucesso!",
+            visibilityTime: 3000,
+          });
+          navigation.replace("Initial");
+        })
+        .catch((error) => {
+          Alert.alert(error.message);
+        });
+    } else {
+      Toast.show({
+        type: "info",
+        text1: "Erro",
+        text2: "Preencha todos os campos",
+        visibilityTime: 3000,
       });
-    navigation.popToTop();
-    Toast.show({
-      type: "success",
-      text1: "Login",
-      text2: "Logado com sucesso!",
-      visibilityTime: 3000,
-    });
+    }
   };
 
   return (
@@ -78,7 +81,8 @@ const Register = () => {
           </View>
           <TextInput
             onChangeText={(text) => setEmail(text)}
-            type="email"
+            keyboardType="email-address"
+            value={email}
             placeholder="example@gmail.com"
             className="w-80 h-12 outline-none border-0"
             style={{ fontSize: "16px" }}
@@ -87,7 +91,7 @@ const Register = () => {
         </View>
 
         <View className="flex-row items-center mt-6 justify-between rounded bg-gray-100">
-          <View className="flex-row items-center justify-start">
+          <View className="flex-row items-center">
             <View className="opacity-50">
               <Entypo.Button
                 name="lock"
@@ -97,25 +101,25 @@ const Register = () => {
             </View>
             <TextInput
               onChangeText={(text) => setPassword(text)}
-              type="password"
+              value={password}
               placeholder="******"
-              className="w-80 h-12 outline-none border-0"
+              className="flex-grow h-12 outline-none border-0"
               style={{ fontSize: "16px" }}
               secureTextEntry={hidePassword}
               placeholderTextColor="#c1c1c1"
             />
+            <TouchableOpacity
+              disabled={!password}
+              onPress={() => setHidePassword(!hidePassword)}
+              className={`mr-2 ${!password && "opacity-30"}`}
+            >
+              {hidePassword ? (
+                <Ionicons name="eye" color="#000" size={25} />
+              ) : (
+                <Ionicons name="eye-off" color="#000" size={25} />
+              )}
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity
-            disabled={!password}
-            onPress={() => setHidePassword(!hidePassword)}
-            className={`-ml-10 px-2 ${!password && "opacity-30"}`}
-          >
-            {hidePassword ? (
-              <Ionicons name="eye" color="#000" size={25} />
-            ) : (
-              <Ionicons name="eye-off" color="#000" size={25} />
-            )}
-          </TouchableOpacity>
         </View>
 
         <TouchableOpacity

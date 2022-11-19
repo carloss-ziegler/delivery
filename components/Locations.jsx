@@ -53,7 +53,8 @@ const Locations = ({ title, title2, title3, title4, location, icon }) => {
           </View>
         </View>
       </Modal>
-      <View className="mb-4 shadow-sm w-96 h-28 rounded-lg bg-white border-[#00CCBB] border-[1.1px] justify-center p-4">
+
+      <View className="mb-4 shadow-sm w-full h-28 rounded-lg bg-white border-[#00CCBB] border-[1.1px] justify-center p-4">
         <View className="flex-1 justify-center">
           <View className="flex-row items-center">
             {icon}

@@ -11,7 +11,7 @@ const PreparingOrder = () => {
   useEffect(() => {
     setTimeout(() => {
       navigation.navigate("Delivery");
-    }, 6000);
+    }, 4000);
   }, []);
 
   return (

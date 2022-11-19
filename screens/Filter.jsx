@@ -44,7 +44,10 @@ const Filter = () => {
       </View>
 
       <Text className="text-lg font-bold p-4 mt-3">Categorias</Text>
-      <ScrollView className="flex-1 w-full">
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        className="flex-1 w-full"
+      >
         <View className="border-y border-gray-300 p-3 bg-white">
           <CategoryFilter title="20% de desconto nos locais favoritos (4)" />
           <CategoryFilter title="30% de desconto na retirada (5)" />
