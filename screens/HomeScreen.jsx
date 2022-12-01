@@ -8,6 +8,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  ActivityIndicator,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
@@ -32,6 +33,7 @@ const HomeScreen = () => {
   const [active, setActive] = useState(false);
   const [isModalVisible, setModalVisible] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     wait(2000).then(() => {
@@ -52,6 +54,7 @@ const HomeScreen = () => {
   }, []);
 
   useEffect(() => {
+    setIsLoading(true);
     sanityClient
       .fetch(
         `
@@ -66,6 +69,7 @@ const HomeScreen = () => {
       )
       .then((data) => {
         setFeaturedCategories(data);
+        setIsLoading(false);
       });
   }, []);
 
@@ -200,54 +204,59 @@ const HomeScreen = () => {
             <AdjustmentsIcon color="#00CCBB" />
           </TouchableOpacity>
         </View>
-        <ScrollView
-          refreshControl={
-            <RefreshControl
-              title="Puxe para atualizar"
-              tintColor="#00ccbb"
-              titleColor="#00ccbb"
-              refreshing={refreshing}
-              onRefresh={onRefresh}
-            />
-          }
-          className="bg-gray-100"
-          contentContainerStyle={{
-            paddingBottom: 100,
-          }}
-        >
-          <Categories />
 
+        {isLoading ? (
+          <ActivityIndicator color="#00CCBB" size="large" />
+        ) : (
           <ScrollView
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ paddingEnd: 30 }}
-            horizontal
-            className="w-full shadow p-4"
+            refreshControl={
+              <RefreshControl
+                title="Puxe para atualizar"
+                tintColor="#00ccbb"
+                titleColor="#00ccbb"
+                refreshing={refreshing}
+                onRefresh={onRefresh}
+              />
+            }
+            className="bg-gray-100"
+            contentContainerStyle={{
+              paddingBottom: 100,
+            }}
           >
-            <View className="flex-row">
-              <Image
-                source={require("../assets/deliverooAd.jpg")}
-                className="w-80 h-44 bg-white shadow rounded mr-3"
-              />
-              <Image
-                source={require("../assets/deliverooAd2.jpg")}
-                className="w-80 mr-3 bg-white h-44 shadow rounded"
-              />
-              <Image
-                source={require("../assets/deliverooAd3.webp")}
-                className="w-80 h-44 bg-white shadow rounded"
-              />
-            </View>
-          </ScrollView>
+            <Categories />
 
-          {featuredCategories?.map((category) => (
-            <FeaturedRow
-              key={category._id}
-              id={category._id}
-              title={category.name}
-              description={category.short_desc}
-            />
-          ))}
-        </ScrollView>
+            <ScrollView
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={{ paddingEnd: 30 }}
+              horizontal
+              className="w-full shadow p-4"
+            >
+              <View className="flex-row">
+                <Image
+                  source={require("../assets/deliverooAd.jpg")}
+                  className="w-80 h-44 bg-white shadow rounded mr-3"
+                />
+                <Image
+                  source={require("../assets/deliverooAd2.jpg")}
+                  className="w-80 mr-3 bg-white h-44 shadow rounded"
+                />
+                <Image
+                  source={require("../assets/deliverooAd3.webp")}
+                  className="w-80 h-44 bg-white shadow rounded"
+                />
+              </View>
+            </ScrollView>
+
+            {featuredCategories?.map((category) => (
+              <FeaturedRow
+                key={category._id}
+                id={category._id}
+                title={category.name}
+                description={category.short_desc}
+              />
+            ))}
+          </ScrollView>
+        )}
       </SafeAreaView>
     </>
   );

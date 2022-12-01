@@ -1,4 +1,11 @@
-import { View, Text, TouchableOpacity, TextInput, Alert } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  Alert,
+  ActivityIndicator,
+} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import * as Animatable from "react-native-animatable";
@@ -13,10 +20,12 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation();
 
   const handleLoginWithEmail = async () => {
     if (email && password) {
+      setIsLoading(true);
       await signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           console.log("sucesso");
@@ -31,6 +40,7 @@ const Register = () => {
         .catch((error) => {
           Alert.alert(error.message);
         });
+      setIsLoading(false);
     } else {
       Toast.show({
         type: "info",
@@ -126,9 +136,13 @@ const Register = () => {
           onPress={handleLoginWithEmail}
           className="bg-[#00CCBB] w-full rounded-md py-4 mt-6 items-center"
         >
-          <Text className="text-white font-bold items-center justify-center text-xl">
-            Login
-          </Text>
+          {isLoading ? (
+            <ActivityIndicator color="#fff" />
+          ) : (
+            <Text className="text-white font-bold items-center justify-center text-xl">
+              Login
+            </Text>
+          )}
         </TouchableOpacity>
 
         <View className="items-center justify-center mt-4 mb-1 flex-row">

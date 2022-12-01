@@ -1,4 +1,11 @@
-import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  ActivityIndicator,
+} from "react-native";
 import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,7 +17,12 @@ import {
 } from "../features/basketSlice";
 import { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { MinusCircleIcon, XCircleIcon } from "react-native-heroicons/solid";
+import {
+  MinusCircleIcon,
+  XCircleIcon,
+  TrashIcon,
+} from "react-native-heroicons/solid";
+
 import { urlFor } from "../sanity";
 import Currency from "react-currency-formatter";
 const BasketScreen = () => {
@@ -18,6 +30,7 @@ const BasketScreen = () => {
   const restaurant = useSelector(selectRestaurant);
   const items = useSelector(selectBasketItems);
   const [groupItems, setGroupItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const total = useSelector(selectBasketTotal);
 
@@ -29,6 +42,13 @@ const BasketScreen = () => {
 
     setGroupItems(groupedItems);
   }, [items]);
+
+  async function handleOrder() {
+    setIsLoading(true);
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+    setIsLoading(false);
+    navigation.navigate("Preparing");
+  }
 
   return (
     <SafeAreaView className="flex-1 bg-white">
@@ -82,7 +102,12 @@ const BasketScreen = () => {
                   className="text-[#00CCBB] text-xs"
                   onPress={() => dispatch(removeFromBasket({ id: key }))}
                 >
-                  <MinusCircleIcon color="#00CCBB" size={40} />
+                  {items.length > 1 && (
+                    <MinusCircleIcon color="#00CCBB" size={40} />
+                  )}
+                  {items.length === 1 && (
+                    <TrashIcon color="#00CCBB" size={40} />
+                  )}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -113,14 +138,18 @@ const BasketScreen = () => {
 
           <TouchableOpacity
             disabled={!items.length}
-            onPress={() => navigation.navigate("Preparing")}
+            onPress={handleOrder}
             className={`rounded-lg ${
               !items.length ? `bg-gray-300` : `bg-[#00CCBB]`
             } p-4`}
           >
-            <Text className="text-center text-white text-xl font-bold">
-              Realizar o pedido
-            </Text>
+            {isLoading ? (
+              <ActivityIndicator color="#fff" />
+            ) : (
+              <Text className="text-center text-white text-xl font-bold">
+                Realizar o pedido
+              </Text>
+            )}
           </TouchableOpacity>
         </View>
       </View>

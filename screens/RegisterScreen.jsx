@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   TextInput,
   KeyboardAvoidingView,
+  ActivityIndicator,
 } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -19,10 +20,12 @@ const Register = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation();
 
   async function handleRegister() {
     if (email && password && userName) {
+      setIsLoading(true);
       await createUserWithEmailAndPassword(auth, email, password)
         .then(async (userCredential) => {
           const user = userCredential.user;
@@ -41,6 +44,7 @@ const Register = () => {
           console.log(error);
           // setError("Email já registrado!");
         });
+      setIsLoading(false);
     } else {
       Toast.show({
         type: "info",
@@ -156,9 +160,13 @@ const Register = () => {
           onPress={handleRegister}
           className="bg-[#00CCBB] w-full rounded-md py-4 mt-6 items-center"
         >
-          <Text className="text-white font-bold items-center justify-center text-xl">
-            Registrar
-          </Text>
+          {isLoading ? (
+            <ActivityIndicator color="#fff" />
+          ) : (
+            <Text className="text-white font-bold items-center justify-center text-xl">
+              Registrar
+            </Text>
+          )}
         </TouchableOpacity>
       </Animatable.View>
     </KeyboardAvoidingView>
