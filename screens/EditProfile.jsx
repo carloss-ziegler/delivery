@@ -4,6 +4,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Image,
+  ActivityIndicator,
 } from "react-native";
 import React from "react";
 import {
@@ -12,9 +13,25 @@ import {
 } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
 import EditProfileOption from "../components/EditProfileOption";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase";
+import { useState } from "react";
 
 const EditProfile = () => {
   const navigation = useNavigation();
+  const [loading, setLoading] = useState(false);
+
+  async function logout() {
+    setLoading(true);
+    await signOut(auth)
+      .then(() => {
+        console.log("Saiu");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    setLoading(false);
+  }
 
   return (
     <SafeAreaView>
@@ -62,6 +79,14 @@ const EditProfile = () => {
           subtitle="Meios de acesso a sua conta"
           route=""
         />
+
+        <TouchableOpacity onPress={logout} className="p-4">
+          {loading ? (
+            <ActivityIndicator size="large" color="#00CCBB" />
+          ) : (
+            <Text className="text-red-500 text-lg font-semibold">Sair</Text>
+          )}
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );

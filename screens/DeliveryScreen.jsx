@@ -54,7 +54,7 @@ const DeliveryScreen = () => {
           longitudeDelta: 0.005,
         }}
         className="flex-1 -mt-10 z-0"
-        mapType="mutedStandard"
+        mapType="standard"
       >
         <Marker
           coordinate={{
@@ -75,7 +75,9 @@ const DeliveryScreen = () => {
         />
         <View className="flex-1 ">
           <Text className="text-lg">Nome do Entregador</Text>
-          <Text className="text-gray-400">Seu Pedido</Text>
+          <Text className="text-gray-400">
+            Pedido N°145 em {restaurant.title}
+          </Text>
         </View>
 
         <Text className="text-[#00CCBB] text-lg mr-5 font-bold">Ligar</Text>
