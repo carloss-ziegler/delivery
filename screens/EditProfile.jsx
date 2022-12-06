@@ -34,13 +34,17 @@ const EditProfile = () => {
   }
 
   return (
-    <SafeAreaView>
-      <View className="flex-row items-center justify-between p-4">
-        <TouchableOpacity onPress={navigation.goBack}>
+    <>
+      <View className="flex-row mx-3 items-center justify-between mt-10 mb-5">
+        <TouchableOpacity
+          className="flex-row items-center flex-1"
+          onPress={navigation.goBack}
+        >
           <ChevronLeftIcon size={28} color="#00CCBB" />
+          <Text className="text-[#00ccbb] text-lg">Perfil</Text>
         </TouchableOpacity>
-        <Text className="font-medium -ml-6">EDITAR PERFIL</Text>
-        <View></View>
+        <Text className="font-medium flex-1">EDITAR PERFIL</Text>
+        <View className="flex-1" />
       </View>
 
       <View className="p-3 mt-2 h-20 w-full justify-center">
@@ -88,7 +92,7 @@ const EditProfile = () => {
           )}
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </>
   );
 };
 
