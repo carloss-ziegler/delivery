@@ -7,11 +7,9 @@ import {
   SafeAreaView,
 } from "react-native";
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
 import UserSettings from "../components/UserSettings";
 import {
   ChatIcon,
-  ChevronLeftIcon,
   ChevronRightIcon,
   CreditCardIcon,
   HeartIcon,
@@ -61,7 +59,9 @@ const UserScreen = ({ navigation }) => {
           />
 
           <View className="ml-2">
-            <Text className="text-gray-500 text-xl">{userDisplayName}</Text>
+            <Text className="text-gray-500 font-semibold text-xl">
+              Olá, <Text className="text-[#00ccbb]">{userDisplayName}</Text>!
+            </Text>
             <Text className="text-gray-400 text-sm">{userEmail}</Text>
           </View>
         </View>

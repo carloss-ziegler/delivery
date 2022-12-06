@@ -27,18 +27,6 @@ import { auth } from "./firebase";
 const Stack = createNativeStackNavigator();
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(null);
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        console.log(user.displayName);
-        setCurrentUser(user.providerData);
-      } else {
-        console.log("nenhum usuário");
-      }
-    });
-  }, [currentUser]);
 
   return (
     <>
@@ -47,8 +35,6 @@ function App() {
           <NavigationContainer>
             <StatusBar style="dark" />
             <Stack.Navigator>
-              {!currentUser ? (
-                <>
                   <Stack.Screen
                     name="Splash"
                     component={SplashScreen}
@@ -68,10 +54,7 @@ function App() {
                     name="Register"
                     component={RegisterScreen}
                     options={{ presentation: "modal", headerShown: false }}
-                  />
-                </>
-              ) : (
-                <>
+                  />              
                   <Stack.Screen
                     options={{ headerShown: false }}
                     name="Initial"
@@ -133,8 +116,6 @@ function App() {
                       headerShown: false,
                     }}
                   />
-                </>
-              )}
             </Stack.Navigator>
           </NavigationContainer>
         </TailwindProvider>

@@ -18,6 +18,7 @@
     "@sanity/image-url": "^1.0.1",
     "expo": "~46.0.8",
     "expo-google-app-auth": "~8.3.0",
+    "expo-image-picker": "~13.3.1",
     "expo-status-bar": "~1.4.0",
     "expo-updates": "~0.14.4",
     "firebase": "9.6.11",

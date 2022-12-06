@@ -25,10 +25,10 @@ const EditProfile = () => {
     setLoading(true);
     await signOut(auth)
       .then(() => {
-        console.log("Saiu");
+        navigation.replace("Welcome");
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.message);
       });
     setLoading(false);
   }
